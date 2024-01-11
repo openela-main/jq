@@ -1,0 +1,25 @@
+diff -up jq-1.6/src/jv.c.iteration jq-1.6/src/jv.c
+--- jq-1.6/src/jv.c.iteration	2022-10-21 14:17:26.977551386 +0200
++++ jq-1.6/src/jv.c	2022-10-21 14:18:43.562430867 +0200
+@@ -308,6 +308,7 @@ static jv jvp_literal_number_new(const c
+   n->refcnt = JV_REFCNT_INIT;
+   n->literal_data = NULL;
+   decContext *ctx = DEC_CONTEXT();
++  decContextClearStatus(ctx, DEC_Conversion_syntax);
+   decNumberFromString(&n->num_decimal, literal, ctx);
+   n->num_double = NAN;
+ 
+diff -up jq-1.6/tests/optional.test.iteration jq-1.6/tests/optional.test
+--- jq-1.6/tests/optional.test.iteration	2022-10-21 14:22:04.191734821 +0200
++++ jq-1.6/tests/optional.test	2022-10-21 14:23:45.820901911 +0200
+@@ -17,4 +17,9 @@ strftime("%A, %B %e, %Y")
+ 1435677542.822351
+ "Tuesday, June 30, 2015"
+ 
+-
++# iteration must continue after hello
++.[]|tonumber?
++["1", "hello", "3", 4]
++1
++3
++4
