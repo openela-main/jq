@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -9,6 +9,7 @@ Source0:        https://github.com/stedolan/jq/releases/download/%{name}-%{versi
 Patch0:         0000-jq-decimal-literal-number.patch
 Patch1:         0001-iterration-problem-for-non-decimal-string.patch
 Patch2:         0002-add-mantest.patch
+Patch3:         0003-fix-pthread-segfault.patch
 
 BuildRequires:  flex
 BuildRequires:  bison
@@ -97,6 +98,10 @@ make check
 
 
 %changelog
+* Tue Mar 14 2023 Tomas Halman <thalman@redhat.com> - 1.6-7
+- Fix jq segfault when used in threads
+- Resolves: rhbz#2092160
+
 * Fri Nov 4 2022 Tomas Halman <thalman@redhat.com> - 1.6-6
 - Add mantest to the gating
 - Related: rhbz#2049601
