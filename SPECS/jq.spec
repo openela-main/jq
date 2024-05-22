@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -10,6 +10,7 @@ Patch0:         0000-jq-decimal-literal-number.patch
 Patch1:         0001-iterration-problem-for-non-decimal-string.patch
 Patch2:         0002-add-mantest.patch
 Patch3:         0003-fix-pthread-segfault.patch
+Patch4:         0004-make-jq-fast.patch
 
 BuildRequires:  flex
 BuildRequires:  bison
@@ -98,6 +99,10 @@ make check
 
 
 %changelog
+* Fri Oct 13 2023 Tomas Halman <thalman@redhat.com> - 1.6-8
+- Make jq 1.6 fast
+- Resolves: RHEL-5052
+
 * Tue Mar 14 2023 Tomas Halman <thalman@redhat.com> - 1.6-7
 - Fix jq segfault when used in threads
 - Resolves: rhbz#2092160
