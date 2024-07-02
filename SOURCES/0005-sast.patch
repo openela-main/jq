@@ -1,0 +1,52 @@
+diff -up jq-1.6/src/jq_test.c.orig jq-1.6/src/jq_test.c
+--- jq-1.6/src/jq_test.c.orig	2024-05-03 11:47:47.403617188 +0200
++++ jq-1.6/src/jq_test.c	2024-05-03 11:48:46.569675199 +0200
+@@ -16,6 +16,7 @@ static void run_jq_pthread_tests();
+ 
+ int jq_testsuite(jv libdirs, int verbose, int argc, char* argv[]) {
+   FILE *testdata = stdin;
++  const char *testdata_filename = NULL;
+   int skip = -1;
+   int take = -1;
+   jv_test();
+@@ -28,18 +29,24 @@ int jq_testsuite(jv libdirs, int verbose
+         take = atoi(argv[i+1]);
+         i++;
+       } else {
+-        testdata = fopen(argv[i], "r");
+-        if (!testdata) {
+-          perror("fopen");
+-          exit(1);
+-        }
++        testdata_filename = argv[i];
+       }
+     }
+   }
++  if (testdata_filename) {
++    testdata = fopen(testdata_filename, "r");
++    if (!testdata) {
++      perror("fopen");
++      exit(1);
++    }
++  }
+   run_jq_tests(libdirs, verbose, testdata, skip, take);
+ #ifdef HAVE_PTHREAD
+   run_jq_pthread_tests();
+ #endif
++  if (testdata_filename) {
++    fclose(testdata);
++  }
+   return 0;
+ }
+ 
+diff -up jq-1.6/src/locfile.c.orig jq-1.6/src/locfile.c
+--- jq-1.6/src/locfile.c.orig	2018-11-02 02:49:29.000000000 +0100
++++ jq-1.6/src/locfile.c	2024-05-03 11:15:46.562476303 +0200
+@@ -72,6 +72,7 @@ void locfile_locate(struct locfile* l, l
+   }
+ 
+   jv m1 = jv_string_vfmt(fmt, fmtargs);
++  va_end(fmtargs);
+   if (!jv_is_valid(m1)) {
+     jq_report_error(l->jq, m1);
+     return;
