@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        16%{?dist}
+Release:        17%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -12,6 +12,7 @@ Patch1:         0001-iterration-problem-for-non-decimal-string.patch
 Patch2:         0002-add-mantest.patch
 Patch3:         0003-fix-pthread-segfault.patch
 Patch4:         0004-make-jq-fast.patch
+Patch5:         0005-sast.patch
 
 BuildRequires:  gcc
 BuildRequires:  flex
@@ -102,6 +103,10 @@ make check
 
 
 %changelog
+* Fri May 3 2024  Tomas Halman <thalman@redhat.com> - 1.6-17
+- Fix SAST findings in jq 1.6
+- Resolves: RHEL-28653
+
 * Fri Oct 13 2023 Tomas Halman <thalman@redhat.com> - 1.6-16
 - Make jq 1.6 fast
 - Resolves: RHEL-13431
