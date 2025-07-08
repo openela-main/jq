@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        9%{?dist}
+Release:        11%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -12,6 +12,8 @@ Patch2:         0002-add-mantest.patch
 Patch3:         0003-fix-pthread-segfault.patch
 Patch4:         0004-make-jq-fast.patch
 Patch5:         0005-sast.patch
+Patch6:         0006-CVE-2024-23337.patch
+Patch7:         0007-CVE-2025-48060.patch
 
 BuildRequires:  flex
 BuildRequires:  bison
@@ -100,6 +102,14 @@ make check
 
 
 %changelog
+* Mon Jun 30 2025 Tomas Halman <thalman@redhat.com> - 1.6-11
+- Fix CVE-2025-48060 AddressSanitizer: stack-buffer-overflow in jq_fuzz_execute (jv_string_vfmt)
+- Resolves: RHEL-92987
+
+* Mon Jun 30 2025 Tomas Halman <thalman@redhat.com> - 1.6-10
+- Fix CVE-2024-23337 jq has signed integer overflow in jv.c:jvp_array_write
+- Resolves: RHEL-92968
+
 * Fri May 3 2024  Tomas Halman <thalman@redhat.com> - 1.6-9
 - Fix SAST findings in jq 1.6
 - Resolves: RHEL-37827
