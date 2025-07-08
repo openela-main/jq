@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        17%{?dist}
+Release:        17%{?dist}.2
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -13,6 +13,8 @@ Patch2:         0002-add-mantest.patch
 Patch3:         0003-fix-pthread-segfault.patch
 Patch4:         0004-make-jq-fast.patch
 Patch5:         0005-sast.patch
+Patch6:         0006-CVE-2024-23337.patch
+Patch7:         0007-CVE-2025-48060.patch
 
 BuildRequires:  gcc
 BuildRequires:  flex
@@ -103,6 +105,14 @@ make check
 
 
 %changelog
+* Thu Jun 19 2025 Tomas Halman <thalman@redhat.com> - 1.6-17.el9.2
+- Fix CVE-2025-48060
+- Resolves: RHEL-92990
+
+* Tue Jun 3 2025  Tomas Halman <thalman@redhat.com> - 1.6-17.el9.1
+- Fix CVE-2024-23337
+- Resolves: RHEL-92972
+
 * Fri May 3 2024  Tomas Halman <thalman@redhat.com> - 1.6-17
 - Fix SAST findings in jq 1.6
 - Resolves: RHEL-28653
