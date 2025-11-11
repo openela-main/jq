@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        17%{?dist}.2
+Release:        19%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -105,13 +105,13 @@ make check
 
 
 %changelog
-* Thu Jun 19 2025 Tomas Halman <thalman@redhat.com> - 1.6-17.el9.2
+* Thu Jun 19 2025 Tomas Halman <thalman@redhat.com> - 1.6-19
 - Fix CVE-2025-48060
-- Resolves: RHEL-92990
+- Resolves: RHEL-92993
 
-* Tue Jun 3 2025  Tomas Halman <thalman@redhat.com> - 1.6-17.el9.1
+* Tue Jun 3 2025  Tomas Halman <thalman@redhat.com> - 1.6-18
 - Fix CVE-2024-23337
-- Resolves: RHEL-92972
+- Resolves: RHEL-92975
 
 * Fri May 3 2024  Tomas Halman <thalman@redhat.com> - 1.6-17
 - Fix SAST findings in jq 1.6
