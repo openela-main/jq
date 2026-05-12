@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        11%{?dist}
+Release:        12%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -14,6 +14,8 @@ Patch4:         0004-make-jq-fast.patch
 Patch5:         0005-sast.patch
 Patch6:         0006-CVE-2024-23337.patch
 Patch7:         0007-CVE-2025-48060.patch
+Patch8:         0008-CVE-2026-39979.patch
+Patch9:         0009-CVE-2026-40164.patch
 
 BuildRequires:  flex
 BuildRequires:  bison
@@ -102,6 +104,12 @@ make check
 
 
 %changelog
+* Mon May 11 2026 Tomas Halman <thalman@redhat.com> - 1.6-12
+- Fix CVE-2026-40164 - Denial of Service via crafted JSON object causing hash collisions
+- Fix CVE-2026-39979 out-of-bounds read in jv_parse_sized()
+- Resolves: RHEL-168174
+- Resolves: RHEL-168192
+
 * Mon Jun 30 2025 Tomas Halman <thalman@redhat.com> - 1.6-11
 - Fix CVE-2025-48060 AddressSanitizer: stack-buffer-overflow in jq_fuzz_execute (jv_string_vfmt)
 - Resolves: RHEL-92987
