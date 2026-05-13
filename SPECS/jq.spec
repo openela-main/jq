@@ -1,13 +1,13 @@
 Name:           jq
 Version:        1.6
-Release:        19%{?dist}
+Release:        19%{?dist}.0.2
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
 URL:            http://stedolan.github.io/jq/
 Source0:        https://github.com/stedolan/jq/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
 # Backport of PR#1752 for RHBZ#2008979
-Patch0:         jq-decimal-literal-number.patch
+Patch0:         0000-jq-decimal-literal-number.patch
 Patch1:         0001-iterration-problem-for-non-decimal-string.patch
 Patch2:         0002-add-mantest.patch
 Patch3:         0003-fix-pthread-segfault.patch
@@ -15,6 +15,8 @@ Patch4:         0004-make-jq-fast.patch
 Patch5:         0005-sast.patch
 Patch6:         0006-CVE-2024-23337.patch
 Patch7:         0007-CVE-2025-48060.patch
+Patch8:         0008-CVE-2026-39979.patch
+Patch9:         0009-CVE-2026-40164.patch
 
 BuildRequires:  gcc
 BuildRequires:  flex
@@ -105,6 +107,14 @@ make check
 
 
 %changelog
+* Thu Apr 23 2026 Tomas Halman <thalman@redhat.com> - 1.6-19.0.2
+- Fix CVE-2026-40164 - Denial of Service via crafted JSON object causing hash collisions
+- Resolves: RHEL-168184
+
+* Thu Apr 23 2026 Tomas Halman <thalman@redhat.com> - 1.6-19.1
+- Fix CVE-2026-39979 out-of-bounds read in jv_parse_sized()
+- Resolves: RHEL-168201
+
 * Thu Jun 19 2025 Tomas Halman <thalman@redhat.com> - 1.6-19
 - Fix CVE-2025-48060
 - Resolves: RHEL-92993
