@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        19%{?dist}.0.2
+Release:        19%{?dist}.2
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -107,13 +107,13 @@ make check
 
 
 %changelog
-* Thu Apr 23 2026 Tomas Halman <thalman@redhat.com> - 1.6-19.0.2
+* Thu Apr 23 2026 Tomas Halman <thalman@redhat.com> - 1.6-19.2
 - Fix CVE-2026-40164 - Denial of Service via crafted JSON object causing hash collisions
-- Resolves: RHEL-168184
+- Resolves: RHEL-168185
 
 * Thu Apr 23 2026 Tomas Halman <thalman@redhat.com> - 1.6-19.1
 - Fix CVE-2026-39979 out-of-bounds read in jv_parse_sized()
-- Resolves: RHEL-168201
+- Resolves: RHEL-168202
 
 * Thu Jun 19 2025 Tomas Halman <thalman@redhat.com> - 1.6-19
 - Fix CVE-2025-48060
